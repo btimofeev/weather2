@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/currentWeatherFragment">
+
+                <fragment
+                    android:id="@+id/currentWeatherFragment"
+                    android:name="org.emunix.weather.ui.weather.CurrentWeatherFragment"
+                    android:label="current_weather_fragment"
+                    tools:layout="@layout/current_weather_fragment" >
+                    <action
+                        android:id="@+id/action_currentWeatherFragment_to_forecastFragment"
+                        app:destination="@id/forecastFragment" />
+                </fragment>
+    <fragment
+        android:id="@+id/forecastFragment"
+        android:name="org.emunix.weather.ui.forecast.ForecastFragment"
+        android:label="fragment_forecast"
+        tools:layout="@layout/forecast_fragment" >
+        <argument android:name="city"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+
+</navigation>
