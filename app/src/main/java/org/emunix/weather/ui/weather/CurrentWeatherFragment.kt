@@ -27,18 +27,18 @@ class CurrentWeatherFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
 
-        viewModel.getWeather().observe(requireActivity(), Observer { weather ->
+        viewModel.getWeather().observe(viewLifecycleOwner, Observer { weather ->
             temp.text = weather?.temp?.toString() ?: ""
             pressure.text = weather?.pressure?.toString() ?: ""
             humidity.text = weather?.humidity?.toString() ?: ""
         })
 
-        viewModel.getMessageToUser().observe(requireActivity(), Observer { message ->
+        viewModel.getMessageToUser().observe(viewLifecycleOwner, Observer { message ->
             if (message.isNotBlank())
                 Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         })
 
-        viewModel.getShowProgress().observe(requireActivity(), Observer { showProgress ->
+        viewModel.getShowProgress().observe(viewLifecycleOwner, Observer { showProgress ->
             swipeRefreshLayout.isRefreshing = showProgress
         })
 

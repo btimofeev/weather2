@@ -43,17 +43,17 @@ class ForecastFragment : Fragment() {
         viewAdapter = ForecastAdapter()
         recycler.adapter = viewAdapter
 
-        viewModel.getForecast().observe(requireActivity(), Observer { forecast ->
+        viewModel.getForecast().observe(viewLifecycleOwner, Observer { forecast ->
             if (forecast != null)
                 viewAdapter.setItems(forecast.forecastData)
         })
 
-        viewModel.getMessageToUser().observe(requireActivity(), Observer { message ->
+        viewModel.getMessageToUser().observe(viewLifecycleOwner, Observer { message ->
             if (message.isNotBlank())
                 Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         })
 
-        viewModel.getShowProgress().observe(requireActivity(), Observer { showProgress ->
+        viewModel.getShowProgress().observe(viewLifecycleOwner, Observer { showProgress ->
             when(showProgress){
                 true  -> progress.visibility = View.VISIBLE
                 false -> progress.visibility = View.INVISIBLE
