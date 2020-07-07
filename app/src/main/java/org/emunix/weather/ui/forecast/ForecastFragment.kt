@@ -52,6 +52,13 @@ class ForecastFragment : Fragment() {
             if (message.isNotBlank())
                 Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         })
+
+        viewModel.getShowProgress().observe(requireActivity(), Observer { showProgress ->
+            when(showProgress){
+                true  -> progress.visibility = View.VISIBLE
+                false -> progress.visibility = View.INVISIBLE
+            }
+        })
     }
 
     override fun onStart() {
